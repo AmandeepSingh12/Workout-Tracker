@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:workout_app/data/workout_data.dart';
+import 'package:workout_app/pages/workout_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,26 +15,35 @@ class _HomePageState extends State<HomePage> {
   void createNewWorkout() {
     showDialog(
       context: context,
-      builder: ((context) => AlertDialog(
-            title: Text("Create new workout"),
-            content: TextField(
-              controller: newWorkoutNameController,
-            ),
-            actions: [
-              MaterialButton(
-                onPressed: save,
-                child: Text("Save"),
-              ),
-              MaterialButton(
-                onPressed: cancel,
-                child: Text("Cancel"),
-              )
-            ],
-          )),
+      builder: (context) => AlertDialog(
+        title: Text("Create new workout"),
+        content: TextField(
+          controller: newWorkoutNameController,
+        ),
+        actions: [
+          MaterialButton(
+            onPressed: save,
+            child: Text("Save"),
+          ),
+          MaterialButton(
+            onPressed: cancel,
+            child: Text("Cancel"),
+          ),
+        ],
+      ),
     );
   }
 
-  void goToWorkoutPage() {}
+  void goToWorkoutPage(String workoutName) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => WorkoutPage(
+          workoutName: workoutName,
+        ),
+      ),
+    );
+  }
 
   void save() {
     String newWorkoutName = newWorkoutNameController.text;
@@ -69,7 +79,8 @@ class _HomePageState extends State<HomePage> {
             title: Text(value.getWorkoutlist()[index].name),
             trailing: IconButton(
               icon: Icon(Icons.arrow_back_sharp),
-              onPressed: goToWorkoutPage,
+              onPressed: () =>
+                  goToWorkoutPage(value.getWorkoutlist()[index].name),
             ),
           ),
         ),
