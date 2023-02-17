@@ -21,13 +21,13 @@ class ExerciseTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color.fromARGB(255, 133, 172, 138),
+      color: Colors.grey[100],
       child: ListTile(
         title: Text(exerciseName),
         subtitle: Row(
           children: [
             Chip(
-              label: Text(weight + " kg"),
+              label: Text("$weight kg"),
             ),
             Chip(
               label: Text(sets),

@@ -25,34 +25,37 @@ class _WorkoutPageState extends State<WorkoutPage> {
 
   void createNewExercise() {
     showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              title: Text('Add a new exercise'),
-              content: Column(children: [
-                TextField(
-                  controller: exerciseNameController,
-                ),
-                TextField(
-                  controller: weightController,
-                ),
-                TextField(
-                  controller: setsController,
-                ),
-                TextField(
-                  controller: repsController,
-                )
-              ]),
-              actions: [
-                MaterialButton(
-                  onPressed: save,
-                  child: Text("Save"),
-                ),
-                MaterialButton(
-                  onPressed: cancel,
-                  child: Text("Cancel"),
-                ),
-              ],
-            ));
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text("Add a new exercise"),
+        content: Column(
+          children: [
+            TextField(
+              controller: exerciseNameController,
+            ),
+            TextField(
+              controller: weightController,
+            ),
+            TextField(
+              controller: repsController,
+            ),
+            TextField(
+              controller: setsController,
+            ),
+          ],
+        ),
+        actions: [
+          MaterialButton(
+            onPressed: save,
+            child: Text("Save"),
+          ),
+          MaterialButton(
+            onPressed: cancel,
+            child: Text("Cancel"),
+          )
+        ],
+      ),
+    );
   }
 
   void save() {
